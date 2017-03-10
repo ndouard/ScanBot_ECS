@@ -18,6 +18,11 @@ import turret
 #start/stop capture - handles Minnowboard dialog
 import capture
 
+import turret
+import radio
+
+#global vars
+
 
 def get_user_command():
 	print('Possible capture modes:')
@@ -29,16 +34,42 @@ def get_user_command():
 	selected_mode = int(user_input)
 	return selected_mode
 
+
+
+
+
 def manual():
-	return
+	print('Starting manual mode...')
+	turret_active = True
+	#bind pwm in @arduino via nanpy (knomb) to turret rot
+	#bind 2/3-pos switch to tilt via nanpy
+	#bind 2-pos switch to capture start/stop + delay writz via console
+	try:
+		print("Press Ctrl+C to stop...")
+		while(turret_active):
+			turret.write_pwm_rot(radio.get_knob_level())
+			turret.write_pwm_tilt(radio.get_3_pos_level())
+			if radio.get_2_pos_level() >= 100:
+				turret_active = false
+	except KeyboardInterrupt:
+		manual_stop()
+		main()
+
+def manual_stop():
+	print('Stopping manual capture...')
+	#stop actual capture
+	#reset turret pos
 	
 def autonomous():
+	print('Starting autonomous mode...')
 	return
 
 
+def autonomous_stop():
+	return
 
-
-if __name__ == '__main__':
+def main():
+#	try:
 	selected_mode = get_user_command()
 	selected_mode_name = str()
 	if selected_mode == 1:
@@ -46,10 +77,17 @@ if __name__ == '__main__':
 	else:
 		selected_mode_name = 'Autonomous'
 	print('Mode #' + str(selected_mode) + ' - ' + selected_mode_name + ' will be used.')
-
 	if selected_mode == 1:
 		manual()
 	else:
 		autonomous()
+#	except:
+#		print('An unknown error occured and execution couldn\'t continue.')
+#		try:
+#			sys.exit(0)
+#		except SystemExit:
+#			os._exit(0)	
 
+if __name__ == '__main__':
+	main()
 
