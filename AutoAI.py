@@ -1,12 +1,12 @@
-class auto_ai:
+class AutoAI:
    'Common base class for all employees'
    ai_count = 0
 
    def __init__(self):
       auto_ai.ai_count += 1
    
-   def displayCount(self):
-     print "Total Employee %d" % Employee.empCount
+   def display_count(self):
+     print "Total Employee %d" % auto_ai.ai_count
 
-   def displayEmployee(self):
+   def display_employee(self):
       print "Name : ", self.name,  ", Salary: ", self.salary
