@@ -111,8 +111,12 @@ class Turret:
 			time.sleep(1)
 
 	def write_pwm_pan(self, pwm_input):
-		#coef + write servo_demo
-		self.left()
+		#pwm_input == 0 -> servo out 0 - left
+		#pwm_input == 127 -> servo out 90 - mid
+		#pwm_input == 255 -> servo out 180 - right
+	
+		output_servo_value = pwm_input * 0.706
+		Turret.servo_pan.write(output_servo_value)
 
 	def write_pwm_tilt(self, pwm_input):
 		if pwm_input == 100:
