@@ -91,16 +91,15 @@ class Turret:
 		#servo_tile.write()
 		#servo_left.write()
 		return
-
+	
+	def mid(self):
+		Turret.servo_tilt.write(self.tilt_servo_mid)
+	
 	def left(self):
-                Turret.servo_tilt.write(self.tilt_servo_mid)
-                Turret.servo_pan.write(self.pan_servo_min)
-                return
+		Turret.servo_pan.write(self.pan_servo_min)
 
 	def right(self):
-                Turret.servo_tilt.write(self.tilt_servo_mid)
-                Turret.servo_pan.write(self.pan_servo_max)
-                return
+		Turret.servo_pan.write(self.pan_servo_max)
 
 	def servo_demo(self):
 		for move in [0, 90, 180, 90, 0]:
@@ -113,8 +112,7 @@ class Turret:
 
 	def write_pwm_pan(self, pwm_input):
 		#coef + write servo_demo
-                self.left()
-                self.right()
+		self.left()
 
 	def write_pwm_tilt(self, pwm_input):
 		if pwm_input == 100:
