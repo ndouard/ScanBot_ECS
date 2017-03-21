@@ -6,14 +6,15 @@ import pathlib
 import time
 import threading
 from ftplib import FTP
+from nanpy import Servo
 
 class Turret:
 	#see diagrams
-	#from nanpy import Servo
-	#servo_rotation = Servo(10)
+	#servo_pan = Servo(10)
 	#servo_tilt = Servo(11)
-	
 	turret_count = 0
+	servo_tilt = Servo(11)
+	servo_pan = Servo(10)
 	
 	def parse_turret_config(self):
 		path = pathlib.Path('scanbot.cfg')
@@ -63,17 +64,22 @@ class Turret:
 		return [tilt_servo_min, tilt_servo_max, tilt_servo_mid, pan_servo_min, pan_servo_max, pan_servo_mid]
 	
 	def __init__(self):
-		Turret.turret_count += 1
-		self.parse_turret_config()
+                Turret.turret_count += 1
+                servo_vars = self.parse_turret_config()
+                self.tilt_servo_min = servo_vars[0]
+                self.tilt_servo_max = servo_vars[1]
+                self.tilt_servo_mid = servo_vars[2]
+                self.pan_servo_min = servo_vars[3]
+                self.pan_servo_max = servo_vars[4]
+                self.pan_servo_max = servo_vars[5]
+
 	
 	def left90(self):
-		#servo_tile.write()
-		#servo_left.write()
+		
 		return
 		
 	def right90(self):
-		#servo_tile.write()
-		#servo_left.write()
+		
 		return
 
 	def left180(self):
@@ -87,10 +93,14 @@ class Turret:
 		return
 
 	def left(self):
-		return
+                Turret.servo_tilt.write(self.tilt_servo_mid)
+                Turret.servo_pan.write(self.pan_servo_min)
+                return
 
 	def right(self):
-		return
+                Turret.servo_tilt.write(self.tilt_servo_mid)
+                Turret.servo_pan.write(self.pan_servo_max)
+                return
 
 	def servo_demo(self):
 		for move in [0, 90, 180, 90, 0]:
@@ -103,13 +113,12 @@ class Turret:
 
 	def write_pwm_pan(self, pwm_input):
 		#coef + write servo_demo
-		return
+                self.left()
+                self.right()
 
 	def write_pwm_tilt(self, pwm_input):
 		if pwm_input == 100:
-			self.left()
-		elif pwm_input == 200:
-			self.right()
+                elif pwm_input == 200:
 		else:
 			print("Bad 3-pos PWM input - is the radio controller correctly configured?")
 
