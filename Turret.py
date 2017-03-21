@@ -39,6 +39,12 @@ class Turret:
 			config['LOGGER']['Password'] = 'Password'
 			config['LOGGER']['SSH Run Command'] = './Logger'
 			
+			config['NAVIO'] = {}
+			config['NAVIO']['IP'] = '192.168.1.1'
+			config['NAVIO']['Username'] = 'Username'
+			config['NAVIO']['Password'] = 'Password'
+			config['NAVIO']['SSH Run Command'] = './Logger'
+			
 			config['TURRET'] = {}
 			config['TURRET']['Tilt Servo Min'] = '0'
 			config['TURRET']['Tilt Servo Max'] = '255'

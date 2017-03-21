@@ -21,22 +21,28 @@ def parse_logger_info():
 		ssh_run_command = config['LOGGER']['SSH Run Command']
 		
 	else:
-		print("Couldn't find server info file. Creating a new one...")
-		
-		config = configparser.RawConfigParser()
-		config['LOGGER'] = {}
-		config['LOGGER']['IP'] = '192.168.1.1'
-		config['LOGGER']['Username'] = 'Username'
-		config['LOGGER']['Password'] = 'Password'
-		config['LOGGER']['SSH Run Command'] = './Logger'
-		
-		config['TURRET'] = {}
-		config['TURRET']['Tilt Servo Min'] = '0'
-		config['TURRET']['Tilt Servo Max'] = '255'
-		config['TURRET']['Tilt Servo Mid'] = '127'
-		config['TURRET']['Pan Servo Min'] = '0'
-		config['TURRET']['Pan Servo Max'] = '255'
-		config['TURRET']['Pan Servo Mid'] = '127'
+			print("Couldn't find turret config file. Creating a new one...")
+			
+			config = configparser.RawConfigParser()
+			config['LOGGER'] = {}
+			config['LOGGER']['IP'] = '192.168.1.1'
+			config['LOGGER']['Username'] = 'Username'
+			config['LOGGER']['Password'] = 'Password'
+			config['LOGGER']['SSH Run Command'] = './Logger'
+			
+			config['NAVIO'] = {}
+			config['NAVIO']['IP'] = '192.168.1.1'
+			config['NAVIO']['Username'] = 'Username'
+			config['NAVIO']['Password'] = 'Password'
+			config['NAVIO']['SSH Run Command'] = './Logger'
+			
+			config['TURRET'] = {}
+			config['TURRET']['Tilt Servo Min'] = '0'
+			config['TURRET']['Tilt Servo Max'] = '255'
+			config['TURRET']['Tilt Servo Mid'] = '127'
+			config['TURRET']['Pan Servo Min'] = '0'
+			config['TURRET']['Pan Servo Max'] = '255'
+			config['TURRET']['Pan Servo Mid'] = '127'
 		
 		with open('scanbot.cfg', 'w') as configfile:
 			config.write(configfile)
