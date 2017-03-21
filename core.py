@@ -47,7 +47,7 @@ def manual():
 	#bind 2/3-pos switch to tilt via nanpy
 	#bind 2-pos switch to capture start/stop + delay writz via console
 	try:
-		capture.prepare_and_run_capture()
+		#capture.prepare_and_run_capture()
 		turret = Turret()
 		print("Press Ctrl+C to stop...")
 		while(turret_active):
@@ -77,7 +77,7 @@ def autonomous_stop():
 def main():
 #	try:
 	selected_mode = get_user_command()
-	selected_mode_name = str()
+	selected_mode_name = str("")
 	if selected_mode == 1:
 		selected_mode_name = 'Manual'
 	elif selected_mode == 3:
