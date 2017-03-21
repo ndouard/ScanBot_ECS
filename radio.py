@@ -1,6 +1,6 @@
 #retrieves knob PWM level using nanpy
 def get_knob_level():
-	return 255
+	return 0
 
 #retrieves 3 pos switch PWM level using nanpy
 def get_3_pos_level():
