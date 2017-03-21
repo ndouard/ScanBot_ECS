@@ -118,7 +118,9 @@ class Turret:
 
 	def write_pwm_tilt(self, pwm_input):
 		if pwm_input == 100:
+		
 		elif pwm_input == 200:
+		
 		else:
 			print("Bad 3-pos PWM input - is the radio controller correctly configured?")
 
