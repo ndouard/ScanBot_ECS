@@ -23,7 +23,7 @@ running = True
 while running:
 	#read period
 	#corresponds to Aux1 bound to RKnob
-	period = rcin.read(5)
+	period = str(rcin.read(5))
 	print(period)
 	#send period
 	socket.sendall(bytes(period, encoding="ascii"))
