@@ -26,7 +26,7 @@ while running:
 	period = str(rcin.read(5))
 	print(period)
 	#send period
-	socket.sendall(bytes(period, encoding="ascii"))
+	socket.sendall(bytes('cats', encoding="ascii"))
 	time.sleep(1)
 socket.close()
 print("Closing socket...")
