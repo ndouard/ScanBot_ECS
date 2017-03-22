@@ -14,7 +14,9 @@ Core acts as a console program - leaves room for GUI implementation
 
 import sys
 #handles low level turret actions
-from Turret import Turret
+
+#from Turret import Turret
+
 #start/stop capture - handles Minnowboard dialog
 import capture
 import radio
@@ -27,6 +29,8 @@ import pathlib
 import time
 import threading
 from ftplib import FTP
+
+import socket
 
 def get_user_command():
 	print('Possible capture modes:')
@@ -48,20 +52,35 @@ def manual():
 	#bind 2-pos switch to capture start/stop + delay writz via console
 	try:
 		#capture.prepare_and_run_capture()
-		turret = Turret()
+		#turret = Turret()
+		
 		print("Press Ctrl+C to stop...")
 		while(turret_active):
-			turret.write_pwm_pan(radio.get_knob_level())
-			turret.write_pwm_tilt(radio.get_3_pos_level())
+			#listening for radio_knob_level update
+			socket.listen(5)
+			client, address = socket.accept()
+			#print("{} connected".format( address ))
+
+			response = client.recv(255)
+			if response != "":
+					#print(response)
+					radio_knob_level = int(response)
+			
+			#execute command after data fetch
+			#turret.write_pwm_pan(radio_knob_level)
+			#turret.write_pwm_tilt(radio.get_3_pos_level())
 			if radio.get_2_pos_level() >= 100:
 				turret_active = false
+		print("Closing server connection...")
+		client.close()
+		stock.close()
 		manual_stop()
 		main()
 	except KeyboardInterrupt:
-		manual_stop()
-		main()
+		sys.exit("The program will now stop.")
 
 def manual_stop():
+	
 	print('Stopping manual capture...')
 	#stop actual capture
 	#reset turret pos
@@ -107,8 +126,7 @@ def check_config():
 			config.write(configfile)
 		
 		sys.exit("Please edit \"scanbot.cfg\" with correct information. The program will now stop.")
-
-	
+		
 def main():
 #	try:
 	check_config()
@@ -133,5 +151,9 @@ def main():
 #			os._exit(0)	
 
 if __name__ == '__main__':
+	print("Starting server...")
+	socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	socket.bind(('', 15555))
+	print("Sever started")
 	main()
 

@@ -22,3 +22,4 @@ def get_3_pos_level():
 
 def get_2_pos_level():
 	return 50
+
