@@ -63,7 +63,7 @@ def manual():
 
 			response = client.recv(255)
 			if response != "":
-					#print(response)
+					print(response)
 					radio_knob_level = int(response)
 			
 			#execute command after data fetch
