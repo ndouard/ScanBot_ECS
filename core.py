@@ -54,13 +54,14 @@ def manual():
 		#capture.prepare_and_run_capture()
 		turret = Turret()
 		
+		#listening for radio_knob_level update
+		socket.listen(5)
+		client, address = socket.accept()
+		print("{} connected".format( address ))
+		
 		print("Press Ctrl+C to stop...")
 		while(turret_active):
-			#listening for radio_knob_level update
-			socket.listen(5)
-			client, address = socket.accept()
-			#print("{} connected".format( address ))
-
+			
 			response = client.recv(255)
 			if response != "":
 					print(response)
