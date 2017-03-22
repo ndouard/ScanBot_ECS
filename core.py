@@ -60,15 +60,18 @@ def manual():
 		print("{} connected".format( address ))
 		
 		print("Press Ctrl+C to stop...")
+		
+		last_pwm_input = int(787/2)
 		while(turret_active):
 			
 			response = client.recv(255)
 			if response != "":
 					print(response)
 					radio_knob_level = int(response)
+					last_pwm_input = radio_knob_level
 			
 			#execute command after data fetch
-			turret.write_pwm_pan(radio_knob_level)
+			turret.write_pwm_pan(radio_knob_level, last_pwm_input)
 			turret.write_pwm_tilt(radio.get_3_pos_level())
 			if radio.get_2_pos_level() >= 100:
 				turret_active = false
