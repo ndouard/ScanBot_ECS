@@ -123,7 +123,7 @@ class Turret:
 		#pwm_input == 255 -> servo out 180 - right
 		
 		#for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
-		if(!(1097 < pwm_input < 1894)):
+		if(not(1097 < pwm_input < 1894)):
 			pwm_input -= 1097
 			output_servo_value = pwm_input * 0.229
 			Turret.servo_pan.write(output_servo_value)
