@@ -5,7 +5,7 @@ import navio.rcinput
 import navio.util
 
 #TODO: parse w/ cfg 
-host = "localhost"
+host = "192.168.43.208"
 port = 15555
 
 #try:
