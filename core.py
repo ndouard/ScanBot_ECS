@@ -47,7 +47,7 @@ def get_user_command():
 def manual():
 	print('Starting manual mode...')
 	turret_active = True
-	#bind pwm in @arduino via nanpy (knomb) to turret rot
+	#bind pwm in @arduino via nanpy (knob) to turret rot
 	#bind 2/3-pos switch to tilt via nanpy
 	#bind 2-pos switch to capture start/stop + delay writz via console
 	try:
