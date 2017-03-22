@@ -123,10 +123,9 @@ class Turret:
 		#pwm_input == 255 -> servo out 180 - right
 		
 		#for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
-		if(1090 < pwm_input < 1900):
-			pwm_input -= 1097
-			output_servo_value = pwm_input * 0.229
-			Turret.servo_pan.write(output_servo_value)
+		if(1090 < pwm_input < 1900 and pwm_input != last_pwm_input):
+			last_pwm_input = pwm_input
+			Turret.servo_pan.write((pwm_input - 1097) * 0.229)
 		else:
 			print('Bad radio input')
 	def write_pwm_tilt(self, pwm_input):
