@@ -122,6 +122,7 @@ class Turret:
 		#pwm_input == 127 -> servo out 90 - mid
 		#pwm_input == 255 -> servo out 180 - right
 		
+		last_pwm_input = int(787/2)
 		#for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
 		if(1090 < pwm_input < 1900 and pwm_input != last_pwm_input):
 			last_pwm_input = pwm_input
