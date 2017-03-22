@@ -68,11 +68,11 @@ def manual():
 			if response != "":
 					print(response)
 					radio_knob_level = int(response)
-					last_pwm_input = radio_knob_level
 			
 			#execute command after data fetch
 			turret.write_pwm_pan(radio_knob_level, last_pwm_input)
 			turret.write_pwm_tilt(radio.get_3_pos_level())
+			last_pwm_input = radio_knob_level
 			if radio.get_2_pos_level() >= 100:
 				turret_active = false
 		print("Closing server connection...")
