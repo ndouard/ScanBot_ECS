@@ -15,7 +15,7 @@ Core acts as a console program - leaves room for GUI implementation
 import sys
 #handles low level turret actions
 
-#from Turret import Turret
+from Turret import Turret
 
 #start/stop capture - handles Minnowboard dialog
 import capture
@@ -52,7 +52,7 @@ def manual():
 	#bind 2-pos switch to capture start/stop + delay writz via console
 	try:
 		#capture.prepare_and_run_capture()
-		#turret = Turret()
+		turret = Turret()
 		
 		print("Press Ctrl+C to stop...")
 		while(turret_active):
@@ -67,8 +67,8 @@ def manual():
 					radio_knob_level = int(response)
 			
 			#execute command after data fetch
-			#turret.write_pwm_pan(radio_knob_level)
-			#turret.write_pwm_tilt(radio.get_3_pos_level())
+			turret.write_pwm_pan(radio_knob_level)
+			turret.write_pwm_tilt(radio.get_3_pos_level())
 			if radio.get_2_pos_level() >= 100:
 				turret_active = false
 		print("Closing server connection...")
