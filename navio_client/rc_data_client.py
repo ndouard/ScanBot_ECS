@@ -27,7 +27,7 @@ while running:
 	print(period)
 	#send period
 	socket.sendall(bytes(period))
-	time.sleep(0.1)
+	#time.sleep(0.1)
 socket.close()
 print("Closing socket...")
 	
