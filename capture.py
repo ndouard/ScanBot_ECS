@@ -70,9 +70,9 @@ def upload_capture_duration(ip, username, password):
 	except:
 		sys.exit("Could not connect to the server properly. Is the Minnowboard on?")
 	
-	#connect.sendcmd('CWD '+directory_name) change dir	
-
-
+	#change dir
+	#connect.sendcmd('CWD '+directory_name) 
+	
 	print("Attempting to send capture delay file...")
 	try:
 		file = open('capture.cfg', 'rb')
@@ -98,7 +98,9 @@ def prepare_and_run_capture():
 	print("Server upload program starting...")
 	#serverConfig array contains ip, username, password
 	serverConfig = parse_logger_info()
-	upload_capture_duration(serverConfig[0], serverConfig[1], serverConfig[2])
-	start_logger_app(serverConfig[0], serverConfig[1], serverConfig[2], serverConfig[3])
+	upload_capture_duration(serverConfig[0], serverConfig[1], serverConfig[2]) #set delay via capture.cfg file
+	start_logger_app(serverConfig[0], serverConfig[1], serverConfig[2], serverConfig[3]) #run app via SSH
+	
+	
 
 
