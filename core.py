@@ -51,6 +51,9 @@ def manual():
 	#bind 2/3-pos switch to tilt via nanpy
 	#bind 2-pos switch to capture start/stop + delay writz via console
 	try:
+		#delay is stored in capture.cfg - could add user prompt for auto file write later
+		#delay = input('How long do you want capture to run?')
+		#mandatory:
 		#capture.prepare_and_run_capture()
 		turret = Turret()
 		
