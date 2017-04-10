@@ -52,12 +52,18 @@ def manual():
 	#bind 2-pos switch to capture start/stop + delay writz via console
 	try:
 		#delay is stored in capture.cfg - could add user prompt for auto file write later
-		#delay = input('How long do you want capture to run?')
+		duration = input('How long do you want capture to run?')
+		name = input('What name do you want for your KLG file?')
+		
+		destination = '/home/logger/logs/' + name + '.klg'
+		print('Destination is: ' + destination)
+		
 		#mandatory:
 		#capture.prepare_and_run_capture()
 		turret = Turret()
 		
 		#listening for radio_knob_level update
+		print('Starting server...')
 		socket.listen(5)
 		client, address = socket.accept()
 		print("{} connected".format( address ))

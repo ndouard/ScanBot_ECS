@@ -4,6 +4,8 @@ import sys, time
 import navio.rcinput
 import navio.util
 
+print('Starting client...')
+
 #TODO: parse w/ cfg 
 host = "192.168.0.100"
 port = 15555
