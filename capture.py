@@ -69,7 +69,7 @@ def start_logger_app(ip, username, password, ssh_run_command, duration, destinat
 	final_command = 'while true; do ' + final_command + ' && break; done'
 	print('Will run: ' + final_command)
 	print('Will now attempt to start capture over SSH...')
-	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command('mkdir testdir')
+	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(final_command)
 	
 	#except:
 	#sys.exit('Could not start capture over SSH.')
