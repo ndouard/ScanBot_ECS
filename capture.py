@@ -65,7 +65,7 @@ def start_logger_app(ip, username, password, ssh_run_command, duration, destinat
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
-	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(mkdir testdir)
+	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command('mkdir testdir')
 	
 	stdout=ssh_stdout.readlines()
 	#except:
