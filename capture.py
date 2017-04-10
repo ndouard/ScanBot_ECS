@@ -58,14 +58,14 @@ def parse_logger_info():
 
 	
 def start_logger_app(ip, username, password, ssh_run_command, duration, destination):
-	final_command = ssh_run_command + ' --duration ' + duration + ' --destination ' + destination
+	final_command = ssh_run_command + ' --duration ' + duration + ' --destination \'' + destination + '\''
 	print('Start command: ' + final_command)
 	print('Will now attempt to start capture over SSH...')
 	#try:
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
-	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(final_command)
+	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(mkdir testdir)
 	
 	stdout=ssh_stdout.readlines()
 	#except:
