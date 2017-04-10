@@ -63,6 +63,7 @@ def start_logger_app(ip, username, password, ssh_run_command, duration, destinat
 	print('Will now attempt to start capture over SSH...')
 	#try:
 	ssh = paramiko.SSHClient()
+	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
 	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(final_command)
 	print(ssh_stdout)
