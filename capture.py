@@ -58,15 +58,17 @@ def parse_logger_info():
 
 	
 def start_logger_app(ip, username, password, ssh_run_command, duration, destination):
-	final_command = ssh_run_command + '--duration ' + duration + ' --destination ' + destination
+	final_command = ssh_run_command + ' --duration ' + duration + ' --destination ' + destination
 	print('Start command: ' + final_command)
 	print('Will now attempt to start capture over SSH...')
-	try:
-		ssh = paramiko.SSHClient()
-		ssh.connect(ip, username=username, password=password)
-		ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(final_command)
-	except:
-		sys.exit('Could not start capture over SSH.')
+	#try:
+	ssh = paramiko.SSHClient()
+	ssh.connect(ip, username=username, password=password)
+	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(final_command)
+	print(ssh_stdout)
+	print(ssh_stderr)
+	#except:
+	#sys.exit('Could not start capture over SSH.')
 	
 def prepare_and_run_capture(duration, destination):
 	print("Current time is: " + time.ctime())
