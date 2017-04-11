@@ -65,7 +65,7 @@ def manual():
 		
 		#start client
 		print('Starting client...')
-		vehicle.start_client(192.168.0.102, pi, aqw743zsx)
+		vehicle.start_client('192.168.0.102', 'pi', 'aqw743zsx')
 		
 		#listening for radio_knob_level update
 		print('Starting server...')
