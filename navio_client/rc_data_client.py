@@ -30,7 +30,7 @@ while running:
 	data=period+period_tilt
 	print(data)
 	#send period
-	socket.sendall(bytes(period))
+	socket.sendall(bytes(data))
 	time.sleep(0.1)
 socket.close()
 print("Closing socket...")
