@@ -84,9 +84,9 @@ def manual():
 			response = client.recv(255)
 			if response != "":
 					print(response)
-					radio_knob_level = int(response[0] + response[1] + response[2] + response[3])
+					radio_knob_level = int(str(response[0]) + str(response[1]) + str(response[2]) + str(response[3]))
 					print(radio_knob_level)
-					radio_tilt_level = int(response[4] + response[5] + response[6] + response[7])
+					radio_tilt_level = int(str(response[4]) + str(response[5]) + str(response[6]) + str(response[7]))
 					print(radio_tilt_level)
 					
 			#execute command after data fetch
