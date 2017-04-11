@@ -84,10 +84,11 @@ def manual():
 			response = client.recv(255)
 			if response != "":
 					print(response)
-					radio_knob_level = int(str(response[0]) + str(response[1]) + str(response[2]) + str(response[3]))
-					print(radio_knob_level)
-					radio_tilt_level = int(str(response[4]) + str(response[5]) + str(response[6]) + str(response[7]))
-					print(radio_tilt_level)
+					response_str = str(response)
+					radio_knob_level = int(response_str[0] + response_str[1] + response_str[2] + response_str[3])
+					print('Pan: ' + radio_knob_level)
+					radio_tilt_level = int(response_str[4] + response_str[5] + response_str[6] + response_str[7])
+					print('Tilt: ' + radio_tilt_level)
 					
 			#execute command after data fetch
 			turret.write_pwm_pan(radio_knob_level, last_pwm_input)
