@@ -116,20 +116,15 @@ class Turret:
 			servo_rotation.write(move)
 			time.sleep(1)
 
-	def write_pwm_pan(self, pwm_input, last_pwm_input):
-		#for input in range 0-255, coef is 0.706
-		#pwm_input == 0 -> servo out 0 - left
-		#pwm_input == 127 -> servo out 90 - mid
-		#pwm_input == 255 -> servo out 180 - right
-		
+	def write_pwm_pan(self, pwm_input, last_pwm_input):		
 		#for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
 		if(1090 < pwm_input < 1900):
 			if((last_pwm_input - 20) <= pwm_input <= (last_pwm_input + 20)):
-				print('Not updated')
+				#print('Not updated')
 			else:
 				Turret.servo_pan.write((pwm_input - 1097) * 0.229)
 		else:
-			print('Bad radio input')
+			#print('Bad radio input')
 	
 	
 	def write_pwm_tilt(self, pwm_input):

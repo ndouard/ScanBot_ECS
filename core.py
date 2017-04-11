@@ -68,7 +68,7 @@ def manual():
 		vehicle.start_client('192.168.0.102', 'pi', 'aqw743zsx')
 		
 		#listening for radio_knob_level update
-		print('Starting server...')
+		print('Starting server for' + duration + 'seconds...')
 		socket.listen(5)
 		client, address = socket.accept()
 		print("{} connected".format( address ))
@@ -76,11 +76,12 @@ def manual():
 		print("Press Ctrl+C to stop...")
 		
 		last_pwm_input = int(787/2)
+		start_time = time.time()
 		while(turret_active):
 			
 			response = client.recv(255)
 			if response != "":
-					print(response)
+					#print(response)
 					radio_knob_level = int(response)
 			
 			#execute command after data fetch
@@ -88,6 +89,8 @@ def manual():
 			turret.write_pwm_tilt(radio.get_3_pos_level())
 			last_pwm_input = radio_knob_level
 			if radio.get_2_pos_level() >= 100:
+				turret_active = false
+			elif time.time() > start_time:
 				turret_active = false
 		print("Closing server connection...")
 		client.close()
