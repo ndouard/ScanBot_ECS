@@ -90,7 +90,7 @@ def shutdown(ip, username, password):
 	stdout, stdin, stderr = ssh.exec_command('echo %s | sudo -S shutdown 0' % password)
 	
 	#except:
-	#sys.exit('Could not start shutdown logger Minnowboard.')
+	#sys.exit('Could not shutdown logger Minnowboard.')
 	
 	
 
