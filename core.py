@@ -84,7 +84,7 @@ def manual():
 			response = client.recv(255)
 			if response != "":
 					int_response = int(response)
-					print('Int response: ' + response)
+					print('Int response: ' + int_response)
 					radio_knob_level = int(response_str[0] + response_str[1] + response_str[2] + response_str[3])
 					print('Pan: ' + radio_knob_level)
 					radio_tilt_level = int(response_str[4] + response_str[5] + response_str[6] + response_str[7])
