@@ -1,1 +1,1 @@
-sudo python rc_data_client.py
+python /home/pi/ScanBot_ECS/navio_client/rc_data_client.py

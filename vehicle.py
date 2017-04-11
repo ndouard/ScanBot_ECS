@@ -9,7 +9,7 @@ from ftplib import FTP
 
 import paramiko
 	
-def start_client():
+def start_client(ip, username, password):
 	final_command = 'bash /home/pi/ScanBot_ECS/navio_client/startup.sh'
 	print('Start command: ' + final_command)
 	
