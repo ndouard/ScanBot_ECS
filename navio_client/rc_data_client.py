@@ -16,8 +16,8 @@ port = 15555
 rcin = navio.rcinput.RCInput()
 
 #open socket
-##socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-##socket.connect((host, port))
+socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socket.connect((host, port))
 print('Connection on {}'.format(port))
 
 #TODO: set not running behavior 
@@ -30,9 +30,9 @@ while running:
 	data=period+period_tilt
 	print(data)
 	#send period
-	##socket.sendall(bytes(period))
+	socket.sendall(bytes(period))
 	time.sleep(0.1)
-##socket.close()
+socket.close()
 print("Closing socket...")
 	
 #except:
