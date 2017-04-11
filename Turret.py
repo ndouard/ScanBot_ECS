@@ -121,10 +121,11 @@ class Turret:
 		if(1090 < pwm_input < 1900):
 			if((last_pwm_input - 20) <= pwm_input <= (last_pwm_input + 20)):
 				#print('Not updated')
+				
 			else:
 				Turret.servo_pan.write((pwm_input - 1097) * 0.229)
 		else:
-			#print('Bad radio input')
+			print('Bad radio input')
 	
 	
 	def write_pwm_tilt(self, pwm_input):
