@@ -151,6 +151,8 @@ def check_config():
 
 def shutdown_all():
 	vehicle.shutdown('192.168.0.102', 'pi', 'aqw743zsx')
+	capture.shutdown('192.168.0.101', 'logger', 'aqw742zsx')
+	capture.shutdown('localhost', 'pi', 'aqw741zsx')
 		
 def main():
 #	try:
@@ -185,3 +187,17 @@ if __name__ == '__main__':
 	print("Sever started")
 	main()
 
+def shutdown(ip, username, password):
+	#try:
+	
+	ssh = paramiko.SSHClient()
+	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+	ssh.connect(ip, username=username, password=password)
+	
+	print('Will now attempt to shutdown logger Minnowboard...')
+	stdout, stdin, stderr = ssh.exec_command('echo %s | sudo -S shutdown 0' % password)
+	
+	#except:
+	#sys.exit('Could not shutdown master Raspberry Pi.')
+	
+	

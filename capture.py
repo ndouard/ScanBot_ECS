@@ -79,6 +79,19 @@ def prepare_and_run_capture(duration, destination):
 	serverConfig = parse_logger_info()	
 	start_logger_app(serverConfig[0], serverConfig[1], serverConfig[2], serverConfig[3], duration, destination) #run app via SSH
 	
-
+def shutdown(ip, username, password):
+	#try:
+	
+	ssh = paramiko.SSHClient()
+	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+	ssh.connect(ip, username=username, password=password)
+	
+	print('Will now attempt to shutdown logger Minnowboard...')
+	stdout, stdin, stderr = ssh.exec_command('echo %s | sudo -S shutdown 0' % password)
+	
+	#except:
+	#sys.exit('Could not start shutdown logger Minnowboard.')
+	
+	
 
 
