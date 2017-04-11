@@ -88,8 +88,8 @@ def manual():
 			#execute command after data fetch
 			##turret.write_pwm_pan(radio_knob_level, last_pwm_input)
 			##turret.write_pwm_tilt(radio_tilt_level, last_tilt_input)
-			last_pwm_input = radio_knob_level
-			last_tilt_input = radio_tilt_level
+			##last_pwm_input = radio_knob_level
+			##last_tilt_input = radio_tilt_level
 			if radio.get_2_pos_level() >= 100:
 				turret_active = False
 			elif time.time() > max_time:
