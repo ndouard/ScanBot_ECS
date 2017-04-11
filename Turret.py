@@ -120,8 +120,7 @@ class Turret:
 		#for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
 		if(1090 < pwm_input < 1900):
 			if((last_pwm_input - 20) <= pwm_input <= (last_pwm_input + 20)):
-				#print('Not updated')
-				
+				print('Not updated')	
 			else:
 				Turret.servo_pan.write((pwm_input - 1097) * 0.229)
 		else:
