@@ -39,7 +39,8 @@ def get_user_command():
 	print('#2 - Autonomous')
 	print('Other:')
 	print('#3 - Quit')
-	print('What will you choose? (1/2/3)')
+	print('#4 - Shutdown')
+	print('What will you choose? (1/2/3/4)')
 	user_input = input()
 	#need to parse properly!
 	selected_mode = int(user_input)
@@ -147,6 +148,9 @@ def check_config():
 			config.write(configfile)
 		
 		sys.exit("Please edit \"scanbot.cfg\" with correct information. The program will now stop.")
+
+def shutdown_all():
+	vehicle.shutdown('192.168.0.102', 'pi', 'aqw743zsx')
 		
 def main():
 #	try:
@@ -157,6 +161,9 @@ def main():
 		selected_mode_name = 'Manual'
 	elif selected_mode == 3:
 		sys.exit("Closing application...")
+	elif selected_mode == 4:
+		shutdown_all()
+		sys.exit('Done')
 	else:
 		selected_mode_name = 'Autonomous'
 	print('Mode #' + str(selected_mode) + ' - ' + selected_mode_name + ' will be used.')
