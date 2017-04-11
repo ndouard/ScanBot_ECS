@@ -69,7 +69,7 @@ def manual():
 		vehicle.start_client('192.168.0.102', 'pi', 'aqw743zsx')
 		
 		#listening for radio_knob_level update
-		print('Listening to client for' + duration + ' seconds...')
+		print('Listening to client for ' + duration + ' seconds...')
 		socket.listen(5)
 		client, address = socket.accept()
 		print("{} connected".format( address ))
@@ -84,7 +84,7 @@ def manual():
 			response = client.recv(255)
 			if response != "":
 					int_response = int(response)
-					print('Int response: ' + int_response)
+					print('Int response: ' + str(int_response))
 					radio_knob_level = int(response_str[0] + response_str[1] + response_str[2] + response_str[3])
 					print('Pan: ' + radio_knob_level)
 					radio_tilt_level = int(response_str[4] + response_str[5] + response_str[6] + response_str[7])
