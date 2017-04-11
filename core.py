@@ -89,9 +89,9 @@ def manual():
 			turret.write_pwm_tilt(radio.get_3_pos_level())
 			last_pwm_input = radio_knob_level
 			if radio.get_2_pos_level() >= 100:
-				turret_active = false
+				turret_active = False
 			elif time.time() > start_time:
-				turret_active = false
+				turret_active = False
 		print("Closing server connection...")
 		client.close()
 		stock.close()
