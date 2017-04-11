@@ -68,7 +68,7 @@ def manual():
 		vehicle.start_client('192.168.0.102', 'pi', 'aqw743zsx')
 		
 		#listening for radio_knob_level update
-		print('Starting server for' + duration + 'seconds...')
+		print('Listening to client for' + duration + 'seconds...')
 		socket.listen(5)
 		client, address = socket.accept()
 		print("{} connected".format( address ))
@@ -94,7 +94,7 @@ def manual():
 				turret_active = False
 		print("Closing server connection...")
 		client.close()
-		stock.close()
+		socket.close()
 		manual_stop()
 		main()
 	except KeyboardInterrupt:
