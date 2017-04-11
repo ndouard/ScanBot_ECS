@@ -85,7 +85,10 @@ def manual():
 			if response != "":
 					print(response)
 					radio_knob_level = int(response[0] + response[1] + response[2] + response[3])
+					print(radio_knob_level)
 					radio_tilt_level = int(response[4] + response[5] + response[6] + response[7])
+					print(radio_tilt_level)
+					
 			#execute command after data fetch
 			turret.write_pwm_pan(radio_knob_level, last_pwm_input)
 			turret.write_pwm_tilt(radio_tilt_level, last_tilt_input)
