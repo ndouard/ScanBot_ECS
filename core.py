@@ -20,6 +20,7 @@ from Turret import Turret
 #start/stop capture - handles Minnowboard dialog
 import capture
 import radio
+import vehicle
 
 import configparser
 import os

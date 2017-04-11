@@ -76,13 +76,9 @@ def start_logger_app(ip, username, password, ssh_run_command, duration, destinat
 	
 def prepare_and_run_capture(duration, destination):
 	print("Current time is: " + time.ctime())
-	print("Server upload program starting...")
-	#serverConfig array contains ip, username, password
-	serverConfig = parse_logger_info()
-	#upload_capture_duration(serverConfig[0], serverConfig[1], serverConfig[2]) #set delay via capture.cfg file
-	
+	serverConfig = parse_logger_info()	
 	start_logger_app(serverConfig[0], serverConfig[1], serverConfig[2], serverConfig[3], duration, destination) #run app via SSH
 	
-	
+
 
 
