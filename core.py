@@ -76,7 +76,7 @@ def manual():
 		print("Press Ctrl+C to stop...")
 		
 		last_pwm_input = int(787/2)
-		max_time = time.time() + duration
+		max_time = time.time() + int(duration)
 		while(turret_active):
 			
 			response = client.recv(255)
