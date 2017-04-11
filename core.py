@@ -76,7 +76,7 @@ def manual():
 		print("Press Ctrl+C to stop...")
 		
 		last_pwm_input = int(787/2)
-		start_time = time.time()
+		max_time = time.time() + duration
 		while(turret_active):
 			
 			response = client.recv(255)
@@ -90,7 +90,7 @@ def manual():
 			last_pwm_input = radio_knob_level
 			if radio.get_2_pos_level() >= 100:
 				turret_active = False
-			elif time.time() > start_time:
+			elif time.time() > max_time:
 				turret_active = False
 		print("Closing server connection...")
 		client.close()
