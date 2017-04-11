@@ -77,6 +77,7 @@ def manual():
 		print("Press Ctrl+C to stop...")
 		
 		last_pwm_input = int(787/2)
+		last_tilt_input = int(787/2)
 		max_time = time.time() + int(duration)
 		while(turret_active):
 			
