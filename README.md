@@ -27,7 +27,7 @@ The master Raspberry Pi board, known as master board sends data to and receives 
 - Logger/Minnowboard running custom Logger1 for RGB-D logging - Ethernet link
 
 This led to the following architecture:
-![alt text](https://github.com/QBitor/ScanBot_ECS/blob/master/readme_res/ecs.jpg "ScanBot ECS architecture")
+![alt text](https://github.com/QBitor/ScanBot_ECS/blob/master/readme_res/ecs.png "ScanBot ECS architecture")
 
 In the server/client approach, the navigation board client sends RC input data to the master board server via TCP/IP which uses this data to control the turret in manual mode. These packets consist in a stream of integers.
 
