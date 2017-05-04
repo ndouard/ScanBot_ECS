@@ -159,9 +159,15 @@ def check_config():
 		sys.exit("Please edit \"scanbot.cfg\" with correct information. The program will now stop.")
 
 def shutdown_all():
+	print('Will now attempt to shutdown system...')
+	#navigation
 	vehicle.shutdown('192.168.0.102', 'pi', 'aqw743zsx')
+	#minnowboard
 	capture.shutdown('192.168.0.101', 'logger', 'aqw742zsx')
+	#master
 	capture.shutdown('localhost', 'pi', 'aqw741zsx')
+
+
 		
 def main():
 #	try:

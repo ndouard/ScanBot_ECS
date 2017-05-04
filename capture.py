@@ -86,7 +86,6 @@ def shutdown(ip, username, password):
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
 	
-	print('Will now attempt to shutdown logger Minnowboard...')
 	stdout, stdin, stderr = ssh.exec_command('echo %s | sudo -S shutdown 0' % password)
 	
 	#except:
