@@ -1,6 +1,6 @@
 # ScanBot3D project
 
-Short teaser: https://www.youtube.com/watch?v=M141V7hvA_Y
+Short presentation: https://www.youtube.com/watch?v=i2ye-qNZSvg
 
 Our goal is to perform 3D reconstruction using mobile embedded systems. The developed solution should be capable to generate the 3D model of indoor spaces. We’ll be using an infrared (IR) sensor embarked on a vehicle in order to do so.
 
