@@ -20,7 +20,7 @@ Find out more about this project here: https://github.com/QBitor/ScanBot_ECS/blo
 
 # ScanBot3D ECS software
 
-Embedded control system (ECS) software handles interaction between the different boards and controls
+Embedded control system (ECS) software handles inter-board data interaction (client–server model) and controls
 the overall behavior of the vehicle.
 
 The master Raspberry Pi board, known as master board sends data to and receives data from other boards, including:
