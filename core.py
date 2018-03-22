@@ -13,11 +13,10 @@ Core acts as a console program - leaves room for GUI implementation
 '''
 
 import sys
-#handles low level turret actions
 
-from Turret import Turret
+from Turret import Turret # handles low level turret actions
 
-#start/stop capture - handles Minnowboard dialog
+# start/stop capture - handles Minnowboard dialog
 import capture
 import radio
 import vehicle
@@ -42,35 +41,32 @@ def get_user_command():
 	print('#4 - Shutdown')
 	print('What will you choose? (1/2/3/4)')
 	user_input = input()
-	#need to parse properly!
+	# need to parse properly
 	selected_mode = int(user_input)
 	return selected_mode
 
 def manual():
 	print('Starting manual mode...')
 	turret_active = True
-	#bind pwm in @arduino via nanpy (knob) to turret rot
-	#bind 2/3-pos switch to tilt via nanpy
-	#bind 2-pos switch to capture start/stop + delay writz via console
+	# bind pwm in @arduino via nanpy (knob) to turret rot
+	# bind 2/3-pos switch to tilt via nanpy
+	# bind 2-pos switch to capture start/stop + delay writz via console
 	try:
-		#delay is stored in capture.cfg - could add user prompt for auto file write later
+		# delay is stored in capture.cfg - could add user prompt for auto file write later
 		duration = input('How long do you want capture to run (seconds)? ')
 		name = input('What name do you want for your KLG file? ')
 		
 		destination = '/home/logger/logs/' + name + '.klg'
 		print('Destination is: ' + destination)
 		
-		#mandatory:
-		capture.prepare_and_run_capture(duration, destination)
+		capture.prepare_and_run_capture(duration, destination) # mandatory
 		turret = Turret()
 		
-		#start client
-		print('Starting client...')
-		vehicle.start_client('192.168.0.102', 'pi', 'aqw743zsx')
+		print('Starting client...') 
+		vehicle.start_client('192.168.0.102', 'pi', 'aqw743zsx') # start client
 		
-		#listening for radio_knob_level update
 		print('Listening to client for ' + duration + ' seconds...')
-		socket.listen(5)
+		socket.listen(5) # listening for radio_knob_level update
 		client, address = socket.accept()
 		print("{} connected".format( address ))
 		
@@ -94,7 +90,7 @@ def manual():
 					radio_tilt_level = int(response_str[4] + response_str[5] + response_str[6] + response_str[7])
 					print('Tilt: ' + str(radio_tilt_level))
 					
-			#execute command after data fetch
+			# execute command after data fetch
 			turret.write_pwm_pan(radio_knob_level, last_pwm_input)
 			turret.write_pwm_tilt(radio_tilt_level, last_tilt_input)
 			last_pwm_input = radio_knob_level
@@ -111,15 +107,13 @@ def manual():
 		sys.exit("The program will now stop.")
 
 def manual_stop():
-	
 	print('Stopping manual capture...')
-	#stop actual capture
-	#reset turret pos
+	# stop actual capture
+	# reset turret pos
 	
 def autonomous():
 	print('Starting autonomous mode...')
 	return
-
 
 def autonomous_stop():
 	return
@@ -152,7 +146,6 @@ def check_config():
 		config['TURRET']['Pan Servo Max'] = '255'
 		config['TURRET']['Pan Servo Mid'] = '127'
 		
-		
 		with open('scanbot.cfg', 'w') as configfile:
 			config.write(configfile)
 		
@@ -160,20 +153,15 @@ def check_config():
 
 def shutdown_all():
 	print('Will now attempt to shutdown system...')
-	#navigation
-	vehicle.shutdown('192.168.0.102', 'pi', 'aqw743zsx')
-	#minnowboard
-	capture.shutdown('192.168.0.101', 'logger', 'aqw742zsx')
-	#master
-	capture.shutdown('localhost', 'pi', 'aqw741zsx')
+	vehicle.shutdown('192.168.0.102', 'pi', 'aqw743zsx') # navigation
+	capture.shutdown('192.168.0.101', 'logger', 'aqw742zsx') # minnowboard
+	capture.shutdown('localhost', 'pi', 'aqw741zsx') # master
 
-
-		
 def main():
-#	try:
 	check_config()
 	selected_mode = get_user_command()
 	selected_mode_name = str("")
+	
 	if selected_mode == 1:
 		selected_mode_name = 'Manual'
 	elif selected_mode == 3:
@@ -188,23 +176,8 @@ def main():
 		manual()
 	else:
 		autonomous()
-#	except:
-#		print('An unknown error occured and execution couldn\'t continue.')
-#		try:
-#			sys.exit(0)
-#		except SystemExit:
-#			os._exit(0)	
-
-if __name__ == '__main__':
-	print("Starting server...")
-	socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	socket.bind(('', 15555))
-	print("Sever started")
-	main()
 
 def shutdown(ip, username, password):
-	#try:
-	
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
@@ -212,7 +185,9 @@ def shutdown(ip, username, password):
 	print('Will now attempt to shutdown logger Minnowboard...')
 	stdout, stdin, stderr = ssh.exec_command('echo %s | sudo -S shutdown 0' % password)
 	
-	#except:
-	#sys.exit('Could not shutdown master Raspberry Pi.')
-	
-	
+if __name__ == '__main__':
+	print("Starting server...")
+	socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	socket.bind(('', 15555))
+	print("Sever started")
+	main()

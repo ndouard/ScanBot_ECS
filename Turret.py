@@ -9,9 +9,9 @@ from ftplib import FTP
 from nanpy import Servo
 
 class Turret:
-	#see diagrams
-	#servo_pan = Servo(10)
-	#servo_tilt = Servo(11)
+	# see diagrams
+	# servo_pan = Servo(10)
+	# servo_tilt = Servo(11)
 	turret_count = 0
 	servo_tilt = Servo(11)
 	servo_pan = Servo(10)
@@ -78,25 +78,22 @@ class Turret:
                 self.pan_servo_min = servo_vars[3]
                 self.pan_servo_max = servo_vars[4]
                 self.pan_servo_max = servo_vars[5]
-
-	
+				
 	def left90(self):
-		
-		return
+		pass
 		
 	def right90(self):
-		
-		return
+		pass
 
 	def left180(self):
-		#servo_tile.write()
-		#servo_left.write()
-		return
+		# servo_tile.write()
+		# servo_left.write()
+		pass
 
 	def right180(self):
-		#servo_tile.write()
-		#servo_left.write()
-		return
+		# servo_tile.write()
+		# servo_left.write()
+		pass
 	
 	def mid(self):
 		Turret.servo_tilt.write(self.tilt_servo_mid)
@@ -126,7 +123,7 @@ class Turret:
 	
 	
 	def write_pwm_tilt(self, pwm_input, last_pwm_input):
-		#for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
+		# for input in range 1097-1894, coef is 0.229 and 1097 should be substracted
 		if(1090 < pwm_input < 1900):
 			if(not((last_pwm_input - 20) <= pwm_input <= (last_pwm_input + 20))):
 				Turret.servo_tilt.write((pwm_input - 1097) * 0.229)
@@ -134,8 +131,8 @@ class Turret:
 			print('Bad radio input')
 
 	def home():
-		#go to default pos
-		return
+		# go to default pos
+		pass
 
 
 		

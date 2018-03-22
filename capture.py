@@ -61,7 +61,6 @@ def start_logger_app(ip, username, password, ssh_run_command, duration, destinat
 	final_command = ssh_run_command + ' --duration ' + duration + ' --destination \'' + destination + '\''
 	print('Start command: ' + final_command)
 	
-	#try:
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
@@ -71,26 +70,17 @@ def start_logger_app(ip, username, password, ssh_run_command, duration, destinat
 	print('Will now attempt to start capture over SSH...')
 	ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(final_command)
 	
-	#except:
-	#sys.exit('Could not start capture over SSH.')
-	
 def prepare_and_run_capture(duration, destination):
 	print("Current time is: " + time.ctime())
 	serverConfig = parse_logger_info()	
 	start_logger_app(serverConfig[0], serverConfig[1], serverConfig[2], serverConfig[3], duration, destination) #run app via SSH
 	
 def shutdown(ip, username, password):
-	#try:
-	
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh.connect(ip, username=username, password=password)
 	
 	stdout, stdin, stderr = ssh.exec_command('echo %s | sudo -S shutdown 0' % password)
-	
-	#except:
-	#sys.exit('Could not shutdown logger Minnowboard.')
-	
 	
 
 

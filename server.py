@@ -12,7 +12,6 @@ try:
 
 			response = client.recv(255)
 			if response != "":
-					#print(response)
 					radio_knob_level = response
 
 	print("Close")
@@ -20,4 +19,5 @@ try:
 	stock.close()
 except:
 	print('Couldn\'t run server on master board. Is networking properly configured?')
+
 	
