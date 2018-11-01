@@ -2,19 +2,19 @@
 
 Short presentation: https://www.youtube.com/watch?v=i2ye-qNZSvg
 
-Our goal is to perform 3D reconstruction using mobile embedded systems. The developed solution should be capable to generate the 3D model of indoor spaces. We’ll be using an infrared (IR) sensor embarked on a vehicle in order to do so.
+Our goal is to perform 3D reconstruction using mobile embedded systems. The developed solution is capable to generate the 3D model of indoor spaces. We’re using an infrared (IR) sensor embarked on a vehicle in order to do so.
 
-The vehicle should offer several navigation options which are as follows:
+The vehicle offers several navigation options:
 - Manual remote control
 - GPS-based autonomous navigation outdoors
 - Software override using input from external embarked module (autonomous navigation indoors for 3D reconstruction with 3D IR module, autonomous car control module)
 
-Communication should be possible:
+Communication is possible:
 - From radio control unit to main navigation board
 - Between a computer or a tablet/smartphone and the main navigation board for configuration and telemetry as well as waypoints definition
 - Between the main navigation board and embarked modules
 
-The main software stack used for navigation has to be open enough to allow future implementations and aforementioned communication between the main navigation board and external modules.
+The main software stack used for navigation is open enough to allow future implementations, and aforementioned communication between the main navigation board and external modules.
 
 Find out more about this project here: https://github.com/QBitor/ScanBot_ECS/blob/master/ScanBot3D.pdf
 
